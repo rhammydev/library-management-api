@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagementAPI", "LibraryManagementAPI.csproj", "{6EC02ED3-6B22-4A63-913A-68DA3EA61CEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6EC02ED3-6B22-4A63-913A-68DA3EA61CEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC02ED3-6B22-4A63-913A-68DA3EA61CEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC02ED3-6B22-4A63-913A-68DA3EA61CEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC02ED3-6B22-4A63-913A-68DA3EA61CEC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
