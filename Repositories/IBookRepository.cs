@@ -17,5 +17,5 @@ public interface IBookRepository
     
     Task<IEnumerable<Book>> SearchBooks(string searchString);
     
-    Task<IEnumerable<Book>> GetAllBooksByCategory(string category);
+    Task<IEnumerable<Book>> GetBooksByCategory(string category);
 }

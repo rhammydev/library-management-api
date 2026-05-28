@@ -81,7 +81,7 @@ public class BookRepository : IBookRepository
         return books;
     }
 
-    public async Task<IEnumerable<Book>> GetAllBooksByCategory(string category)
+    public async Task<IEnumerable<Book>> GetBooksByCategory(string category)
     {
         var  books = await _dbContext.Books.Where(x => x.Category == category).ToListAsync();
         return books;
