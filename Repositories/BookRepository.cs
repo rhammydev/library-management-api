@@ -35,6 +35,16 @@ public class BookRepository : IBookRepository
             throw new Exception("Book already exists");
         }
 
+        if (createBookDto.Quantity < 0)
+        {
+            throw new ArgumentException("Quantity cannot be negative");
+        }
+        
+        if (createBookDto.Price < 1)
+        {
+            throw new ArgumentException("Price must be greater than zero");
+        }
+        
         var book = new Book
         {
             Title = createBookDto.Title,
@@ -67,6 +77,16 @@ public class BookRepository : IBookRepository
         if (bookExist)
         {
             throw new Exception("A book with the same title and author already exists");
+        }
+        
+        if (updateBookDto.Quantity < 0)
+        {
+            throw new ArgumentException("Quantity cannot be negative");
+        }
+
+        if (updateBookDto.Price < 1)
+        {
+            throw new ArgumentException("Price must be greater than zero");
         }
 
         existingBook.Title = updateBookDto.Title;
