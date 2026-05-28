@@ -1,13 +1,10 @@
-namespace LibraryManagementAPI.Models;
+namespace LibraryManagementAPI.Models.DTOs;
 
-public class Book
+public class CreateBookDto
 {
-    public int Id { get; set; }
     public string Title { get; set; }
     public string Author { get; set; }
     public string Category { get; set; }
     public double Price { get; set; }
     public int Quantity  { get; set; }
-    
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
 }
