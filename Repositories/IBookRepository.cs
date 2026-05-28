@@ -11,11 +11,13 @@ public interface IBookRepository
     
     Task<Book> CreateBook(CreateBookDto createBookDto);
     
-    Task<Book> UpdateBook(Book book);
+    Task<Book> UpdateBook(int id, UpdateBookDto updateBookDto);
     
     Task<bool> DeleteBook(int id);
     
     Task<IEnumerable<Book>> SearchBooks(string searchString);
     
     Task<IEnumerable<Book>> GetBooksByCategory(string category);
+    
+    Task<IEnumerable<Book>> GetOutOfStockBooks();
 }

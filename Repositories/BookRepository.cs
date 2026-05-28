@@ -50,17 +50,33 @@ public class BookRepository : IBookRepository
 
     }
 
-    public async Task<Book> UpdateBook(Book book)
+    public async Task<Book> UpdateBook(int id, UpdateBookDto updateBookDto)
     {
-        var existingBook = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == book.Id);
+        var existingBook = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
         if (existingBook == null)
         {
             throw new Exception("Book not found");
         }
+        
+        // Exclude the current book from the duplicate check
+        var bookExist = await _dbContext.Books.AnyAsync(x => 
+            x.Title == updateBookDto.Title && 
+            x.Author == updateBookDto.Author &&
+            x.Id != id); 
+        
+        if (bookExist)
+        {
+            throw new Exception("A book with the same title and author already exists");
+        }
 
-        _dbContext.Books.Update(book);
+        existingBook.Title = updateBookDto.Title;
+        existingBook.Author = updateBookDto.Author;
+        existingBook.Category = updateBookDto.Category;
+        existingBook.Price = updateBookDto.Price;
+        existingBook.Quantity = updateBookDto.Quantity;
+        
         await _dbContext.SaveChangesAsync();
-        return book;
+        return existingBook;
     }
 
     public async Task<bool> DeleteBook(int id)
@@ -77,13 +93,19 @@ public class BookRepository : IBookRepository
 
     public async Task<IEnumerable<Book>> SearchBooks(string searchString)
     {
-        var  books = await _dbContext.Books.Where(x => x.Title.Contains(searchString)).ToListAsync();
+        var  books = await _dbContext.Books.Where(x => x.Title.ToLower().Contains(searchString)).ToListAsync();
         return books;
     }
 
     public async Task<IEnumerable<Book>> GetBooksByCategory(string category)
     {
-        var  books = await _dbContext.Books.Where(x => x.Category == category).ToListAsync();
+        var  books = await _dbContext.Books.Where(x => x.Category.ToLower() == category.ToLower()).ToListAsync();
+        return books;
+    }
+
+    public async Task<IEnumerable<Book>> GetOutOfStockBooks()
+    {
+        var books = await _dbContext.Books.Where(x => x.Quantity == 0).ToListAsync();
         return books;
     }
 }

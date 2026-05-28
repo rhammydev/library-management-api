@@ -58,10 +58,10 @@ public class BookController : ControllerBase
      }
      
      // update a book
-     [HttpPut("update-book")]
-     public async Task<IActionResult> UpdateBook(Book book)
+     [HttpPut("update-book/{id}")]
+     public async Task<IActionResult> UpdateBook(int id, UpdateBookDto updateBookDto)
      {
-         var  updatedBook = await _bookRepository.UpdateBook(book);
+         var  updatedBook = await _bookRepository.UpdateBook(id, updateBookDto);
          return Ok(updatedBook);
      }
      
@@ -71,6 +71,14 @@ public class BookController : ControllerBase
      {
          var isDeleted = await _bookRepository.DeleteBook(id);
          return Ok(isDeleted);
+     }
+     
+     // Get out of stock books
+     [HttpGet("get-out-of-stock-books")]
+     public async Task<IActionResult> GetOutOfStockBooks()
+     {
+        var   books = await _bookRepository.GetOutOfStockBooks();
+         return Ok(books); 
      }
 
 }
