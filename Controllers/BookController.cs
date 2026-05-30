@@ -9,7 +9,7 @@ namespace LibraryManagementAPI.Controllers;
 [Route("api/[controller]")]
 public class BookController : ControllerBase
 {
-     //perform abstraction
+    
      private readonly IBookRepository _bookRepository;
      
      public  BookController(IBookRepository bookRepository)
