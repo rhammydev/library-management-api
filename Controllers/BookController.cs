@@ -59,9 +59,9 @@ public class BookController : ControllerBase
      
      // update a book
      [HttpPut("update-book/{id}")]
-     public async Task<IActionResult> UpdateBook(int id, UpdateBookDto updateBookDto)
+     public async Task<IActionResult> UpdateBook(int id, CreateBookDto createBookDto)
      {
-         var  updatedBook = await _bookRepository.UpdateBook(id, updateBookDto);
+         var  updatedBook = await _bookRepository.UpdateBook(id, createBookDto);
          return Ok(updatedBook);
      }
      
